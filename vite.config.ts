@@ -1,15 +1,17 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+// vite.config.ts
+import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
-
-const root = createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export default defineConfig({
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
+  plugins: [react()],
+  resolve: {
+    alias: {
+     '@': path.resolve(__dirname, '.'),
+    },
+  },
+});
